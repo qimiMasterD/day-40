@@ -1,13 +1,17 @@
 import { HashRouter as Router, Routes, Route } from "react-router";
 
 // Pages
-import Demo from "../../pages/Demo";
+import TaskList from "../../pages/TaskList";
+import EditTask from "../../pages/EditTask";
+import NewTask from "../../pages/NewTask";
 
 function AppRoutes() {
     return (
         <Router>
             <Routes>
-                <Route path="/demo" element={<Demo />} />
+                <Route path="/" element={<TaskList />} />
+                <Route path="/new-task" element={<NewTask />}></Route>
+                <Route path="/:id/edit" element={<EditTask />}></Route>
             </Routes>
         </Router>
     );

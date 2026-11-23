@@ -1,0 +1,83 @@
+.form {
+    max-width: 520px;
+    margin: 40px auto;
+    padding: 24px;
+
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+
+    /* Field wrapper */
+    > div:first-child {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 24px;
+    }
+
+    label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #111111;
+        letter-spacing: -0.01em;
+    }
+
+    input {
+        height: 40px;
+        padding: 0 12px;
+
+        font-size: 0.9375rem;
+        color: #111111;
+        background-color: #ffffff;
+        border: 1px solid #e5e5e5;
+        border-radius: 6px;
+        outline: none;
+
+        transition:
+            border-color 0.16s ease,
+            box-shadow 0.16s ease;
+
+        &::placeholder {
+            color: #a3a3a3;
+        }
+
+        &:hover:not(:disabled) {
+            border-color: #d4d4d4;
+        }
+
+        &:focus {
+            border-color: #111111;
+            box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.1);
+        }
+
+        &:disabled {
+            background-color: #fafafa;
+            color: #737373;
+            cursor: not-allowed;
+        }
+
+        /* Highlights input automatically when the error <p> renders */
+        &:has(+ p) {
+            border-color: #dc2626;
+
+            &:focus {
+                border-color: #dc2626;
+                box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.12);
+            }
+        }
+    }
+
+    p {
+        margin: 0;
+        font-size: 0.8125rem;
+        color: #b91c1c;
+    }
+
+    /* Button group */
+    > div:last-child {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.5rem;
+    }
+}

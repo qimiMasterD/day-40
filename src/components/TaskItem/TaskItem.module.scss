@@ -1,0 +1,35 @@
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    padding: 12px 16px;
+    background-color: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+
+    transition:
+        background-color 0.16s ease,
+        border-color 0.16s ease;
+
+    &:hover {
+        background-color: #fafafa;
+        border-color: #d4d4d4;
+    }
+}
+
+.title {
+    font-size: 0.9375rem;
+    font-weight: 450;
+    color: #111111;
+    line-height: 1.4;
+    word-break: break-word;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
