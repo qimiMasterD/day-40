@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Redux Counter</title>
+        <style>
+            body {
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    sans-serif;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                margin: 0;
+                background: #fafafa;
+                color: #111;
+            }
+            #count {
+                font-size: 4rem;
+                font-weight: 300;
+                margin-bottom: 1.5rem;
+            }
+            .controls {
+                display: flex;
+                gap: 0.5rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+                background: #fff;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: background 0.15s ease;
+            }
+            button:hover {
+                background: #f0f0f0;
+            }
+            button:active {
+                background: #e5e5e5;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="count">0</div>
+        <div class="controls">
+            <button id="inc">Increase</button>
+            <button id="dec">Decrease</button>
+            <button id="reset">Reset</button>
+            <button id="unsub">Remove Listener</button>
+        </div>
+
+        <script type="module">
+            import createStore from "./redux.js";
+
+            let initialValue = 0;
+            const reducer = (state, action) => {
+                switch (action.type) {
+                    case "inc":
+                        return state + 1;
+                    case "dec":
+                        return state - 1;
+                    case "reset":
+                        return initialValue;
+                    default:
+                        return state;
+                }
+            };
+
+            const store = createStore(reducer, initialValue);
+            const content = document.querySelector("#count");
+            const unsubsribe = store.subscribe(() => {
+                content.textContent = store.getState();
+            });
+
+            const incBtn = document.querySelector("#inc");
+            incBtn.addEventListener("click", () => {
+                store.dispatch({
+                    type: "inc",
+                });
+            });
+            const decBtn = document.querySelector("#dec");
+            decBtn.addEventListener("click", () => {
+                store.dispatch({
+                    type: "dec",
+                });
+            });
+            const resetBtn = document.querySelector("#reset");
+            resetBtn.addEventListener("click", () => {
+                store.dispatch({
+                    type: "reset",
+                });
+            });
+            const unsubBtn = document.querySelector("#unsub");
+            unsubBtn.addEventListener("click", () => {
+                unsubsribe();
+            });
+        </script>
+    </body>
+</html>
